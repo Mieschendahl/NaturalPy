@@ -1,0 +1,12 @@
+[project]
+name = "naturalpy"
+version = "1.0.0"
+description = "A project for natural language programming."
+authors = [
+    {name = "Leonardo Mieschendahl", email = "miesschendahl.leonardo@gmail.com"}
+]
+dependencies = []
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"

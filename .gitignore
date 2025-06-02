@@ -1,0 +1,11 @@
+__pycache__/
+__naturalpy__/
+dist/
+build/
+.venv
+
+tmp.*
+*.swp
+*.egg-info
+logs.txt
+__implementation__
