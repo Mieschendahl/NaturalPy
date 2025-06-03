@@ -119,7 +119,7 @@ class Implementer:
             match choice:
                 case "impossible", reason:
                     raise ImplementationError(
-                        f"The LLM determined that the function  \"{self.name}\" is impossible to implement because: {reason}"
+                        f"The LLM determined that the function \"{self.name}\" is impossible to implement because: {reason}"
                     )
                 case "implement", code:
                     obj = load(code, self.name, self.functions)

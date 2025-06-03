@@ -5,7 +5,9 @@ description = "A project for natural language programming."
 authors = [
     {name = "Leonardo Mieschendahl", email = "miesschendahl.leonardo@gmail.com"}
 ]
-dependencies = []
+dependencies = [
+    'PromptPy @ git+https://github.com/Mieschendahl/PromptPy.git'
+]
 
 [build-system]
 requires = ["setuptools", "wheel"]
