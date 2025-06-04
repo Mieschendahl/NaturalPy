@@ -54,8 +54,8 @@ class Implementer:
 
         self.prompter = Prompter(model=self.config.model, log_file=self.config.log_file, allow_injections=self.config.allow_injections, id=self.config.id)\
             .add_message(
-                "You are a python expert who should help the user implement a python function."
-                "\nNever use libraries outside of python's standard library!",
+                "You are a Python expert who should help the user implement a python function."
+                "\nDo not use any Python libraries that do not come preinstalled!",
                 role="developer"
             )\
             .add_message(
@@ -105,13 +105,13 @@ class Implementer:
                 .get_choice(
                     Option(
                         "implement",  # label
-                        "If you have found an implementation",  # condition
+                        "If you know how to implement the function",  # condition
                         "Write your implementation and nothing else, not even examples",  # action
                         "I will give you feedback on whether your implementation is correct" # effect
                     ),
                     Option(
                         "impossible",  # label
-                        "If you have found a reason why the function can not be implemented",  # condition
+                        "If implementing the function is impossible",  # condition
                         "Write your reason",  # action
                         "I will give you feedback on whether your reasoning is correct"  # effect
                     )
@@ -167,6 +167,19 @@ class Implementer:
                     errors.append(f"{call} should return {expected!r} but returned {predicted} instead")
             except Exception as e:
                 errors.append(f"{call} should return {expected!r} but raised {type(e)} instead")
+                
+        for args, unexpected, tolerance in self.tester.unequals_tests:
+            call = f"{self.name}(" + ", ".join(repr(arg) for arg in args) + ")"
+            try:
+                predicted = self.implementation(*args)
+                if isinstance(tolerance, Null):
+                    error = predicted != unexpected
+                else:
+                    error = abs(predicted - unexpected) > tolerance
+                if not error:
+                    errors.append(f"{call} should not return {unexpected!r}")
+            except Exception as e:
+                pass
                 
         for args, expected in self.tester.raises_tests:
             call = f"{self.name}(" + ", ".join(repr(arg) for arg in args) + ")"
