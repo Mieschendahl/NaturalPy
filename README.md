@@ -143,3 +143,5 @@ ASSISTANT:
 2. Provide a `Model` class implementation (e.g. `examples/gpt.py`).
 
 The `examples` directory contains some examples.
+
+You might also be interested in [*PythonGPT*](https://github.com/Mieschendahl/PythonGPT) which is a version of *NaturalPy* that inherently supports *ChatGPT*.
