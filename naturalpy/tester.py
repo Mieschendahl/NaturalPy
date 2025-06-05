@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Self
 
 class Null:
     """Custom class to signalize that no value was given."""
@@ -14,7 +14,7 @@ class Tester:
         self.unequals_tests = []
         self.raises_tests = []
 
-    def check(self, *args: Any, equals: Any = null, unequals: Any = null, tolerance: float | Null = null, raises: Exception | Null = null) -> "Tester":
+    def check(self, *args: Any, equals: Any = null, unequals: Any = null, tolerance: float | Null = null, raises: Exception | Null = null) -> Self:
         """Adds a test which will be checked during the implementation of a function.
         If no optional keyword arguments are given, then the test checks if the function runs without raising an exception.
         
